@@ -1,0 +1,66 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Sprout.Link Management</title>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js"></script>
+  <style type="text/css">
+  	body {
+  		font-family: 'Helvetica', sans-serif;
+  	}
+  	form {
+  		border:1px dotted #ccc;
+  		background:#f7f7f7;
+  		padding:30px;
+  		margin-bottom:30px;
+  	}
+  	label	{
+  		display:block;
+  		padding-bottom:3px;
+  	}
+  	input[type=text] {
+  		margin-bottom:20px;
+  		border:1px solid #ccc;
+  		padding:10px;
+  		border-radius:5px;
+  		width:30%;
+  	}
+  	textarea {
+  		width:30%;
+  		padding:10px;
+  		border:1px solid #ccc;
+  		border-radius:5px;
+  		height:100px;
+  	}
+  </style>
+
+   <script type="text/javascript">
+    $(document).ready(function(){
+      var in_trial = true;
+
+      $('#view_site_btn').click(function(e){
+        if(in_trial) {
+          var epoch = Date.now();
+          var href = $('#view_site_btn').attr('href');
+          window.open(href + "?preview_code=" + epoch, '_blank');
+        }
+      });
+    });
+  </script>
+
+</head>
+<body>
+  <h3>Sprout.link Manager</h3>
+  <a id="view_site_btn" href="file:///Users/maxpage/code/intercom_id_finder/sproutlink_public.html" style="border:1px solid #ccc; border-radius:5px; display: inline-block; margin-top:10px; padding:10px 15px; text-decoration:none;" target="_blank">Preview Site</a>
+
+  <h3 style="margin-top:45px;">Team Discussion Topics</h3>
+  <ol style="width:400px;">
+    <li style="padding-bottom:20px;">What if the user disables Javascript? (maybe this isn't a problem b/c the page won't render?)</li>
+    <li style="padding-bottom:20px;">2 minutes feels short if the user is playing around and refreshing. Maybe we shoudl put it at like 30 minutes when we launch. Then drop it to whatever a good time we feel like. The important thing is the link expires and can't be used permanently.</li>
+    <li style="padding-bottom:20px;">What if we generate the static file with "_trial" at the end of the filename? Then the back-end doesn't have to set any Javascript variable value in the template/</li>
+  </ul>
+</body>
+</html>

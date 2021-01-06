@@ -1,0 +1,117 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Sprout.Link Management</title>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js"></script>
+  <style type="text/css">
+  	body {
+  		font-family: 'Helvetica', sans-serif;
+  	}
+  	form {
+  		border:1px dotted #ccc;
+  		background:#f7f7f7;
+  		padding:30px;
+  		margin-bottom:30px;
+  	}
+  	label	{
+  		display:block;
+  		padding-bottom:3px;
+  	}
+  	input[type=text] {
+  		margin-bottom:20px;
+  		border:1px solid #ccc;
+  		padding:10px;
+  		border-radius:5px;
+  		width:30%;
+  	}
+  	textarea {
+  		width:30%;
+  		padding:10px;
+  		border:1px solid #ccc;
+  		border-radius:5px;
+  		height:100px;
+  	}
+    ul {
+      overflow:hidden;
+    }
+    li {
+      float:left;
+      padding-right:5px;
+    }
+    li img {
+      width:190px;
+    }
+    #trial_banner {
+      background:#d80a0a;
+      padding:20px;
+      margin: 10px 0;
+    }
+    #trial_banner p {
+      margin:0 auto;
+      width:600px;
+      color:#fff;
+    }
+  </style>
+
+  <script type="text/javascript">
+    var epoch = Date.now();
+    var add_banner = false;
+
+    // This will be set at render time somehow
+    // Then when a customer becomes a subscriber the page is regenerated with this as false
+    var in_trial = true;
+
+    var urlParams = new URLSearchParams(window.location.search);
+    var preview_code = urlParams.get('preview_code');
+
+    if(in_trial) {
+      // Check if we will render the in trial banner 
+      // or redirect to 404/SproutSocial.com
+      if(preview_code !== null && (((epoch - parseInt(preview_code)) / 1000) < 120) ) {
+        // Link can be rendered within X seconds of click with trial banner
+        add_banner = true
+      } else {
+        // Hide all content
+        // or even redirect to 404
+        window.location.replace("https://sproutsocial.com");
+      }
+    } else {
+      // Render everything normally
+    }
+
+    $(document).ready(function() {
+      if (add_banner) {
+        $('#handle_box').after('<div id="trial_banner"><p><strong>Sprout.link PREVIEW</strong><br/>This site preview can only be refreshed & visited for the next 2 minutes then you will have to click the "Preview Site" button again. To get a permanently public Sprout.link without this banner please subscribe to any paid plan. <a style="color:#5f0606;" href="#">Why does this preview link only last 10 minutes?</a></p></div>');
+      }
+    });
+  </script>
+
+</head>
+<body>
+  <div id="handle_box" style="width:100%;">
+    <div style="width:600px; margin:0 auto; overflow:hidden; padding: 15px 0;">
+      <img src="https://scontent-ort2-1.cdninstagram.com/v/t51.2885-19/s150x150/15876594_252287685194069_7197486957478281216_a.jpg?_nc_ht=scontent-ort2-1.cdninstagram.com&_nc_ohc=kuI3J6CerMQAX8DqWM5&tp=1&oh=2e74f2b5ad7c4eef64b83a5eb7a1bebd&oe=601DCD21" style="width:25px; border-radius:25px; float:left; margin-right:10px;"> <span style="padding-top:5px; display: inline-block;">Maxsprout</span>
+    </div>
+  </div>
+  <div style="width:100%;">
+    <ul style="width:600px; margin:0 auto; list-style:none; padding:0;">
+      <li><img src="bird.jpg"></li>
+      <li><img src="bird.jpg"></li>
+      <li><img src="bird.jpg"></li>
+      <li><img src="bird.jpg"></li>
+      <li><img src="bird.jpg"></li>
+      <li><img src="bird.jpg"></li>
+      <li><img src="bird.jpg"></li>
+      <li><img src="bird.jpg"></li>
+      <li><img src="bird.jpg"></li>
+      <li><img src="bird.jpg"></li>
+      <li><img src="bird.jpg"></li>
+      <li><img src="bird.jpg"></li>
+    </ul>
+  </div>
+</body>
+</html>
