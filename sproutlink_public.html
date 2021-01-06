@@ -71,7 +71,7 @@
     if(in_trial) {
       // Check if we will render the in trial banner 
       // or redirect to 404/SproutSocial.com
-      if(preview_code !== null && (((epoch - parseInt(preview_code)) / 1000) < 120) ) {
+      if(preview_code !== null && (((epoch - parseInt(preview_code)) / 1000) < 30) ) {
         // Link can be rendered within X seconds of click with trial banner
         add_banner = true
       } else {
@@ -85,7 +85,7 @@
 
     $(document).ready(function() {
       if (add_banner) {
-        $('#handle_box').after('<div id="trial_banner"><p><strong>Sprout.link PREVIEW</strong><br/>This site preview can only be refreshed & visited for the next 2 minutes then you will have to click the "Preview Site" button again. To get a permanently public Sprout.link without this banner please subscribe to any paid plan. <a style="color:#5f0606;" href="#">Why does this preview link only last 10 minutes?</a></p></div>');
+        $('#handle_box').after('<div id="trial_banner"><p><strong>Sprout.link PREVIEW</strong><br/>This site preview can only be refreshed & visited for the next 30 seconds then you will have to click the "Preview Site" button again. To get a permanently public Sprout.link without this banner please subscribe to any paid plan. <a style="color:#5f0606;" href="#">Why does this preview link only last X minutes?</a></p></div>');
       }
     });
   </script>
