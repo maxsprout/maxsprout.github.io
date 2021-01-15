@@ -115,7 +115,7 @@
   </div>
 
   <div style="border-bottom:1px solid #ccc; padding:0 0 20px; margin-bottom: 20px;">
-    <a href="#" class="web_share" style="display: block;">iOS Web Share API</a>
+    <a href="#" class="web_share" style="display: block;">iOS Web Share API: Text + URL</a>
     <script type="text/javascript">
       $(document).ready(function() {
 
@@ -126,6 +126,27 @@
             navigator.share(
               {
                 text: "This web share API is awesome!!",
+                url: "https://webkit.org/blog/8718/new-webkit-features-in-safari-12-1/"
+              }
+            );
+          }
+        });
+
+      });
+    </script>
+  </div>
+
+  <div style="border-bottom:1px solid #ccc; padding:0 0 20px; margin-bottom: 20px;">
+    <a href="#" class="web_share" style="display: block;">iOS Web Share API: URL</a>
+    <script type="text/javascript">
+      $(document).ready(function() {
+
+        $('.web_share').click(function(e){
+          e.preventDefault();
+
+          if (navigator.share) {
+            navigator.share(
+              {
                 url: "https://webkit.org/blog/8718/new-webkit-features-in-safari-12-1/"
               }
             );
