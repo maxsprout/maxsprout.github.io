@@ -39,6 +39,61 @@
 </head>
 <body>
 
+  <div style="border-bottom:1px solid #ccc; margin:30px 0; padding-bottom: 50px;">
+    <div>
+      <textarea class="js-copytextarea">Star Wars is free! @starwars</textarea>
+      <div style="padding:10px 0 0;">
+        <button class="js-textareacopybtn" data-shareurl="https://www.linkedin.com/shareArticle?url=https://www.vice.com/en/article/n7vqgm/disney-ea-star-wars-exclusivity-ends-deal-with-ubisoft-bethesda" style="vertical-align:top;">Share on LinkedIn</button>
+        <button class="js-textareacopybtn" data-shareurl="https://twitter.com/share?url=https://www.vice.com/en/article/n7vqgm/disney-ea-star-wars-exclusivity-ends-deal-with-ubisoft-bethesda" style="vertical-align:top;">Twitter</button>
+        <button class="js-textareacopybtn" data-shareurl="https://www.facebook.com/sharer.php?u=https://www.vice.com/en/article/n7vqgm/disney-ea-star-wars-exclusivity-ends-deal-with-ubisoft-bethesda" style="vertical-align:top;">Facebook</button>
+      </div>
+      <p class="help_text" style="display:none;">Post text copied to clipboard. Paste (cmd+v) in <span></span>. Opening in 2 seconds...</p>
+    </div>
+
+    <script type="text/javascript">
+      $('.js-textareacopybtn').click(function(e) {
+        var copyTextarea = document.querySelector('.js-copytextarea');
+        copyTextarea.focus();
+        copyTextarea.select();
+        var url = this.dataset.shareurl;
+
+        if(url.indexOf("https://twitter.com") > -1) {
+          url += "&text=" + copyTextarea.value;
+          url = encodeURI(url);
+        }
+
+        try {
+          var successful = document.execCommand('copy');
+          var msg = successful ? 'successful' : 'unsuccessful';
+          console.log('Copying text command was ' + msg);
+
+          if(url.indexOf("https://twitter.com") < 0) {
+           
+            if(url.indexOf("https://www.facebook.com") < 0) {
+              $('.help_text').find('span').html('LinkedIn');
+            } else {
+              $('.help_text').find('span').html('Facebook');
+            }
+
+            $('.help_text').show();
+
+            setTimeout(function(){
+              $('.help_text').hide();
+              var win = window.open(url, '_blank');
+              win.focus();
+            }, 2000);
+          } else {
+            var win = window.open(url, '_blank');
+            win.focus();
+          }
+
+        } catch (err) {
+          console.log('Oops, unable to copy');
+        }
+      });
+    </script>
+  </div>
+
   <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0&appId=1668056963256389&autoLogAppEvents=1" nonce="3ZBtaTGP"></script>
 	
@@ -91,7 +146,7 @@
     <br/><br/>
     <a href="https://www.linkedin.com/feed/update/urn:li:activity:6739780158007320576">LinkedIn Company Page Post (opens Native App if installed)</a>
     <br/><br/>
-    <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.espn.com/nfl/story/_/id/30704173/nfl-playoffs-game-changing-move-every-team-chasing-super-bowl-lv&title=This+is+espn+article">Share URL Link</a>
+    <a href="https://www.linkedin.com/shareArticle?url=https://www.espn.com/nfl/story/_/id/30704173/nfl-playoffs-game-changing-move-every-team-chasing-super-bowl-lv&title=This+is+espn+article">Share URL Link</a>
 	  <br/><br/>
 	  <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:6749366112393281537" height="778" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
   </div>
