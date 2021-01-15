@@ -114,6 +114,29 @@
     </script>
   </div>
 
+  <div>
+    <a href="#" class="web_share">iOS Web Share API</a>
+    <script type="text/javascript">
+      $(document).ready(function() {
+
+        $('.web_share').click(function(e){
+          e.preventDefault();
+
+          if (navigator.share) {
+            navigator.share(
+              {
+                title: "Web Sharing API Title",
+                text: "This web share API is awesome!!",
+                url: "https://webkit.org/blog/8718/new-webkit-features-in-safari-12-1/"
+              }
+            );
+          }
+        });
+
+      });
+    </script>
+  </div>
+
   <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0&appId=1668056963256389&autoLogAppEvents=1" nonce="3ZBtaTGP"></script>
 	
